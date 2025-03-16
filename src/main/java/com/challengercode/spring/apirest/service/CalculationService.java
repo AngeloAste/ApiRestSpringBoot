@@ -1,5 +1,8 @@
 package com.challengercode.spring.apirest.service;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -7,14 +10,37 @@ import org.springframework.web.client.RestTemplate;
 public class CalculationService {
 
     private final RestTemplate restTemplate;
+    private final CacheManager cacheManager;
 
-    public CalculationService(RestTemplate restTemplate) {
+    public CalculationService(RestTemplate restTemplate, CacheManager cacheManager) {
         this.restTemplate = restTemplate;
+        this.cacheManager = cacheManager;
     }
 
-    public double getDynamicPercentage() {
-        // Simulación de servicio externo con un valor fijo (ejemplo: 10%)
-        String url = "http://localhost:8080/mock-percentage";
-        return restTemplate.getForObject(url, Double.class);
+    @Cacheable(value = "percentageCache", unless = "#result == null")
+    public Double getDynamicPercentage() {
+        try {
+            String url = "http://localhost:8080/mock-percentage"; // Simula un servicio externo
+            Double percentage = restTemplate.getForObject(url, Double.class);
+            if (percentage != null) {
+                updateCache(percentage); // Almacenar en caché
+            }
+            return percentage;
+        } catch (Exception e) {
+            // Si el servicio externo falla, intentamos recuperar el último valor en caché
+            Double cachedPercentage = (Double) cacheManager.getCache("percentageCache")
+                    .get("percentageCache", Double.class);
+
+            if (cachedPercentage != null) {
+                return cachedPercentage; // Retorna el último valor almacenado en caché
+            }
+
+            throw new RuntimeException("No se pudo obtener el porcentaje y no hay valores en caché");
+        }
+    }
+
+    @CachePut(value = "percentageCache")
+    public void updateCache(Double percentage) {
+        // Actualiza la caché con el nuevo valor del porcentaje
     }
 }
