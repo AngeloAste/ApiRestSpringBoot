@@ -29,6 +29,13 @@ La API cuenta con documentación generada automáticamente con **Swagger**, lo q
 
 📌 Desde **Swagger** puedes enviar peticiones **GET, POST, PUT y DELETE** y ver la estructura de los **request** y **responses**.
 
+### 🌐 Llamada a la API
+También puedes probar la API directamente desde Postman o tu navegador con la siguiente URL de ejemplo:
+```bash
+http://localhost:8080/calculate?num1=100&num2=10
+```
+Esto enviará una solicitud **GET** al endpoint `/calculate` con los parámetros `num1=100` y `num2=10`.
+
 ## 🧪 **Pruebas**
 Para ejecutar los tests, usa el siguiente comando:
 ```bash
