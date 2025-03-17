@@ -20,6 +20,7 @@ mvn spring-boot:run
 3️⃣ Acceder a Swagger UI
 Una vez que la API esté corriendo, la documentación estará disponible en:
 🔗 Swagger UI
+ http://localhost:8080/swagger-ui/index.html
 
 ✅ Pruebas
 Para ejecutar los tests, usa el siguiente comando:
