@@ -8,6 +8,7 @@ Apache Maven
 Docker y Docker Compose
 
 🔧 Configuración y Ejecución
+
 1️⃣ Levantar PostgreSQL con Docker
 Ejecuta el siguiente comando en la raíz del proyecto para iniciar la base de datos:
 docker-compose up -d
