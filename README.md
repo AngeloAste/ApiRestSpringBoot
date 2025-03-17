@@ -57,7 +57,7 @@ GET http://localhost:8080/calculate?num1=100&num2=10
 ```
 Esto enviará una solicitud **GET** al endpoint `/calculate` con los parámetros `num1=100` y `num2=10`.
 
-### 🌐 API Caché del porcentaje
+### 🌐 API Porcentaje dinámico
 
 La API almacena el **porcentaje dinámico** en caché durante **30 minutos**.
 
