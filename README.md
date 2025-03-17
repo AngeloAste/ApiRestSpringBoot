@@ -1,5 +1,11 @@
 # 📌 **API REST Spring Boot**
 Este proyecto es una **API REST** desarrollada con **Spring Boot** y **Java 21**, utilizando **PostgreSQL** como base de datos y **Docker** para su gestión.
+## Funcionalidad
+
+- **Cálculo con porcentaje dinámico** (suma + porcentaje del servicio externo o caché).
+- **Caché del porcentaje** (almacenado 30 min, usado si el servicio externo falla).
+- **Historial de llamadas** (fecha, endpoint, parámetros, respuesta/error, con paginación y registro asíncrono).
+
 
 ## 🚀 **Requisitos**
 Antes de ejecutar el proyecto, asegúrate de tener instalado:
