@@ -43,4 +43,13 @@ public class CalculationService {
     public void updateCache(Double percentage) {
         // Actualiza la caché con el nuevo valor del porcentaje
     }
+
+    // Nuevo método para realizar el cálculo
+    public double calculate(double num1, double num2) {
+        Double percentage = getDynamicPercentage(); // Obtiene el porcentaje dinámico
+        if (percentage == null) {
+            throw new RuntimeException("No se pudo obtener el porcentaje dinámico");
+        }
+        return (num1 + num2) * (1 + (percentage / 100));
+    }
 }
