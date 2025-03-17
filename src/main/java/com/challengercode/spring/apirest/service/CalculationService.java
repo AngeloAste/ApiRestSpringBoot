@@ -22,20 +22,25 @@ public class CalculationService {
         try {
             String url = "http://localhost:8080/mock-percentage"; // Simula un servicio externo
             Double percentage = restTemplate.getForObject(url, Double.class);
+            
+            System.out.println("Servicio externo devuelve: " + percentage);
+            
             if (percentage != null) {
-                updateCache(percentage); // Almacenar en caché
+                updateCache(percentage);
+                return percentage;
             }
-            return percentage;
         } catch (Exception e) {
-            // Si el servicio externo falla, intentamos recuperar el último valor en caché
-            Double cachedPercentage = (Double) cacheManager.getCache("percentageCache")
-                    .get("percentageCache", Double.class);
-
-            if (cachedPercentage != null) {
-                return cachedPercentage; // Retorna el último valor almacenado en caché
-            }
-            throw new RuntimeException("No se pudo obtener el porcentaje de cálculo");
+            System.out.println("⚠️ Error obteniendo porcentaje externo: " + e.getMessage());
         }
+    
+        Cache cache = cacheManager.getCache("percentageCache");
+        if (cache != null) {
+            Double cachedPercentage = cache.get("percentage", Double.class);
+            System.out.println("🔄 Recuperado de caché: " + cachedPercentage);
+            return cachedPercentage;
+        }
+    
+        throw new RuntimeException("No se pudo obtener el porcentaje de cálculo");
     }
 
     @CachePut(value = "percentageCache")
@@ -47,10 +52,13 @@ public void updateCache(Double percentage) {
 }
     // Nuevo método para realizar el cálculo
     public double calculate(double num1, double num2) {
-        Double percentage = getDynamicPercentage(); // Obtiene el porcentaje dinámico
+        double base = num1 + num2;
+        Double percentage = getDynamicPercentage();
+        
         if (percentage == null) {
-            throw new RuntimeException("No se pudo obtener el porcentaje dinámico");
+            throw new RuntimeException("No se pudo obtener el porcentaje de cálculo");
         }
-        return (num1 + num2) * (1 + (percentage / 100));
+    
+        return base + (base * (percentage / 100));
     }
 }

@@ -17,7 +17,7 @@ public class CalculationController {
     public double calculate(@RequestParam double num1, @RequestParam double num2) {
         double sum = num1 + num2;
         double percentage = calculationService.getDynamicPercentage();
-        System.out.println(" Porcentaje obtenido: " + percentage); // Verificar valor obtenido
+        System.out.println(" [Controller] Valor de percentage: " + percentage); // Verificar valor obtenido
         return sum + (sum * (percentage / 100)); // Aplica el porcentaje dinámico
     }
 }
