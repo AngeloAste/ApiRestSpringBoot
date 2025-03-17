@@ -1,8 +1,8 @@
 package com.challengercode.spring.apirest.service;
-
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -34,16 +34,17 @@ public class CalculationService {
             if (cachedPercentage != null) {
                 return cachedPercentage; // Retorna el último valor almacenado en caché
             }
-
-            throw new RuntimeException("No se pudo obtener el porcentaje y no hay valores en caché");
+            throw new RuntimeException("No se pudo obtener el porcentaje de cálculo");
         }
     }
 
     @CachePut(value = "percentageCache")
-    public void updateCache(Double percentage) {
-        // Actualiza la caché con el nuevo valor del porcentaje
+public void updateCache(Double percentage) {
+    Cache cache = cacheManager.getCache("percentageCache");
+    if (cache != null) {
+        cache.put("percentage", percentage); // ✅ Guardar en caché
     }
-
+}
     // Nuevo método para realizar el cálculo
     public double calculate(double num1, double num2) {
         Double percentage = getDynamicPercentage(); // Obtiene el porcentaje dinámico
