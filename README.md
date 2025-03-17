@@ -23,9 +23,11 @@ mvn spring-boot:run
 ```
 
 ### 3️⃣ **Acceder a Swagger UI**
-Una vez que la API esté corriendo, la documentación estará disponible en:
+La API cuenta con documentación generada automáticamente con **Swagger**, lo que permite probar los endpoints de manera interactiva.
 
 🔗 **Swagger UI**: http://localhost:8080/swagger-ui/index.html
+
+📌 Desde **Swagger** puedes enviar peticiones **GET, POST, PUT y DELETE** y ver la estructura de los **request** y **responses**.
 
 ## 🧪 **Pruebas**
 Para ejecutar los tests, usa el siguiente comando:
