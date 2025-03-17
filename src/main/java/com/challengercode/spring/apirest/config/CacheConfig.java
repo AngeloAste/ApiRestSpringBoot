@@ -26,7 +26,7 @@ public class CacheConfig {
                     @Override
                     public void put(Object key, Object value) {
                         super.put(key, value);
-                        // ✅ Eliminar la caché después de 30 minutos
+                        // Eliminar la caché después de 30 minutos
                         new Thread(() -> {
                             try {
                                 TimeUnit.MINUTES.sleep(30);
