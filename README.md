@@ -41,8 +41,8 @@ La API cuenta con documentación generada automáticamente con **Swagger**, lo q
 La API realiza un cálculo sumando dos números y aplicando un **porcentaje dinámico** obtenido de un servicio externo o desde la caché si el servicio no está disponible.
 
 📌 **Fórmula del cálculo**:
-
-resultado = (num1 + num2) + ((num1 + num2) * (porcentaje / 100))
+sum = num1 + num2;
+resultado =  sum + (sum * (porcentaje / 100))
 
 🔹 **Funcionamiento**:
 - Obtiene el porcentaje desde un servicio externo.
