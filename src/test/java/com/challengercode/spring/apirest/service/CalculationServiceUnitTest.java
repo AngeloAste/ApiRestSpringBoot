@@ -1,4 +1,4 @@
-package com.challengercode.spring.apirest;
+package com.challengercode.spring.apirest.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
