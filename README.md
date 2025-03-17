@@ -1,37 +1,56 @@
-# 📌 API REST Spring Boot
-Este proyecto es una API REST desarrollada con Spring Boot y Java 21, utilizando PostgreSQL como base de datos y Docker para su gestión.
+# 📌 **API REST Spring Boot**
+Este proyecto es una **API REST** desarrollada con **Spring Boot** y **Java 21**, utilizando **PostgreSQL** como base de datos y **Docker** para su gestión.
 
-🚀 Requisitos
+## 🚀 **Requisitos**
 Antes de ejecutar el proyecto, asegúrate de tener instalado:
-JDK 21
-Apache Maven
-Docker y Docker Compose
 
-🔧 Configuración y Ejecución
+- **JDK 21**
+- **Apache Maven**
+- **Docker** y **Docker Compose**
 
-1️⃣ Levantar PostgreSQL con Docker
+## 🔧 **Configuración y Ejecución**
+
+### 1️⃣ **Levantar PostgreSQL con Docker**
 Ejecuta el siguiente comando en la raíz del proyecto para iniciar la base de datos:
+```bash
 docker-compose up -d
+```
 
-2️⃣ Ejecutar la API
+### 2️⃣ **Ejecutar la API**
 Inicia la API con Maven:
+```bash
 mvn spring-boot:run
+```
 
-3️⃣ Acceder a Swagger UI
+### 3️⃣ **Acceder a Swagger UI**
 Una vez que la API esté corriendo, la documentación estará disponible en:
-🔗 Swagger UI
- http://localhost:8080/swagger-ui/index.html
 
-✅ Pruebas
+🔗 **Swagger UI**: http://localhost:8080/swagger-ui/index.html
+
+## 🧪 **Pruebas**
 Para ejecutar los tests, usa el siguiente comando:
+```bash
 mvn test
-Las pruebas se encuentran en src/test/java/com/challengercode/spring/apirest/
+```
+Las pruebas se encuentran en:
+```plaintext
+src/test/java/com/challengercode/spring/apirest/
+```
 
-✅ Comandos útiles para ejecutar las pruebas
+## 🛠️ **Comandos útiles para ejecutar las pruebas**
 
-Si quieres ejecutar todas las pruebas, usa:
+- Ejecutar todas las pruebas:
+```bash
 mvn clean test
-Si solo quieres ejecutar las pruebas de los controladores:
+```
+
+- Solo pruebas de controladores:
+```bash
 mvn -Dtest=com.challengercode.spring.apirest.controller.CalculationControllerTest test
-Si solo quieres ejecutar las pruebas de los servicios:
+```
+
+- Solo pruebas de servicios:
+```bash
 mvn -Dtest=com.challengercode.spring.apirest.service.CalculationServiceUnitTest test
+```
+
